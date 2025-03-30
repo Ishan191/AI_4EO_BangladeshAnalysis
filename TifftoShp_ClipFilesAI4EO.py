@@ -17,7 +17,6 @@ def getInputs():
 def getBangShp():
     return f"{getRootFolder()}AI4EO/"
 
-## Export
 def fix_invalid_geometry(geometry):
     if not geometry.is_valid:
         geometry = geometry.buffer(0)
@@ -28,7 +27,6 @@ def Export_Shapefile(filtered, output_folder, output_filename):
     os.makedirs(output_folder, exist_ok=True)
     output_shapefile_path = os.path.join(output_folder, output_filename + ".shp")
     filtered.to_file(output_shapefile_path, driver='ESRI Shapefile')
-
 
 def clippies():
     # Load necessary datasets
