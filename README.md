@@ -12,6 +12,7 @@ Files in This Repository
 
 Dependencies
 The scripts require the following Python libraries:
+
 •	numpy
 •	pandas
 •	torch
