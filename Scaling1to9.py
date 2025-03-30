@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Created on Thu Mar 27 16:43:09 2025
 
@@ -8,42 +7,38 @@ Created on Thu Mar 27 16:43:09 2025
 import os
 import rasterio
 from rasterio.enums import Resampling
+from rasterio.transform import Affine
 
 def rescale_tiff(input_file, output_file, scale_factor):
     with rasterio.open(input_file) as src:
-        # Calculate new dimensions
         width = int(src.width * scale_factor)
         height = int(src.height * scale_factor)
 
-        # Resample the image
         data = src.read(
             out_shape=(src.count, height, width),
-            resampling=Resampling.bilinear  # Change this to a different method if needed
+            resampling=Resampling.bilinear  
         )
-
-        # Copy the metadata and adjust for new size
         profile = src.profile
         profile.update(
-            dtype=rasterio.float32,
+            dtype=rasterio.float32,  
             height=height,
             width=width,
             crs=src.crs
         )
 
-        # Write the resampled data to the output file
+        new_transform = src.transform * Affine.scale(src.width / width, src.height / height)
+        profile.update(transform=new_transform)
         with rasterio.open(output_file, 'w', **profile) as dst:
             dst.write(data)
 
-def process_all_tiffs_in_folder(folder_path, scale_factor):
+def tiffs_in_folder(folder_path, scale_factor):
     for filename in os.listdir(folder_path):
         if filename.endswith(".tif") or filename.endswith(".tiff"):
             input_file = os.path.join(folder_path, filename)
-            output_file = os.path.join(folder_path, f"{filename}_rescaled")
-            print(f"Processing {input_file}...")
+            output_file = os.path.join(folder_path, f"rescaled_{filename}")
             rescale_tiff(input_file, output_file, scale_factor)
-            print(f"Saved {output_file}")
 
 # Example usage
-folder_path = "D:/Python Test Codes/AI4EO/Inputs_NDVI"  # Replace this with your folder path
-scale_factor = 9  # From 1km to 9km
-process_all_tiffs_in_folder(folder_path, scale_factor)
+folder_path = r"D:\Python Test Codes\Inputs_UHI"  
+scale_factor = 1/9  # From 1km to 9km
+tiffs_in_folder(folder_path, scale_factor)
