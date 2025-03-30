@@ -35,7 +35,7 @@ glob
 ### 3. UHI Prediction Model
 - **RFC_Bangladesh.py** processes the shapefiles and extracts data into dataframes. These dataframes are first saved and then used in the Random Forest Regressor model. A separate correlation matrix is also generated.
 - **ProjectWeeks_LSTM.py** trains an LSTM model using geospatial and climate-related variables obtained from the datasets saved using RFC_Bangladesh.py.
-- The models are trained on district-wise environmental features and predict UHI values.
+- While The models are trained on district-wise environmental features and predict UHI values they only consider NDVI,Albedo,Wind,Wind Direction,Precipitation,GEOCODE,LST,DISTCODE and UHI as features.
 
 ### 4. Running the Scripts
 For raster data download,use:
@@ -45,6 +45,7 @@ javascript DataDownloadScript.js
 Ensure that a different folder name is set to store the raster files of different fetures under variable - driveFolder
 The dataset is also required to be changed for varying features under - var dataset = ee.ImageCollection('ECMWF/ERA5_LAND/MONTHLY_AGGR')
 The band can be set under the feature name e.g var uWind = dataset.select('u_component_of_wind_10m').mean() where uWind is the variable and 'u_component_of_wind_10m' is the band being downloaded from the dataset.
+Repeat process for downloading all the relevant datasets.
 
 For raster data processing, use:
 ```sh
