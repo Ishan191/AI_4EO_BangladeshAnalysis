@@ -5,7 +5,7 @@ This repository contains Python scripts for geospatial data processing and machi
 
 ## Files in This Repository
 1. **RFC_Bangladesh.py** - Contains functions for preprocessing geospatial and environmental data and implementing a random forest regressor model.
-2. **LSTM_Bangladesh.py** - Implements an LSTM model for predicting UHI using environmental variables.
+2. **LSTM_Bangladesh.py** - Implements a LSTM model for predicting UHI using environmental variables.
 3. **TifftoShp_ClipFilesAI4EO.py** - Extracts and processes raster (.tif) files, clipping them using shapefiles of the specified country/region.
 4. **Scaling1to9.py** – Used for scaling down high-resolution (.tif) files from 1 km to 9 km.
 5. **DataDownloadScript.js** – Used for downloading relevant feature .Tiff files from Google Earth Engine
