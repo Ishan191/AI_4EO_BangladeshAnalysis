@@ -42,10 +42,10 @@ For raster data download,use:
 ```sh
 javascript DataDownloadScript.js  
 ```
-**Ensure** that a different folder name is set to store the raster files of different fetures under variable - driveFolder
-**The** dataset is also required to be changed for varying features under - var dataset = ee.ImageCollection('ECMWF/ERA5_LAND/MONTHLY_AGGR')
-**The** band can be set under the feature name e.g var uWind = dataset.select('u_component_of_wind_10m').mean() where uWind is the variable and 'u_component_of_wind_10m' is the band being downloaded from the dataset.
-**Repeat** process for downloading all the relevant datasets.
+- Ensure that a different folder name is set to store the raster files of different fetures under variable - driveFolder
+- The dataset is also required to be changed for varying features under - var dataset = ee.ImageCollection('ECMWF/ERA5_LAND/MONTHLY_AGGR')
+- The band can be set under the feature name e.g var uWind = dataset.select('u_component_of_wind_10m').mean() where uWind is the variable and 'u_component_of_wind_10m' is the band being downloaded from the dataset.
+- Repeat process for downloading all the relevant datasets.
 
 For raster data processing, use:
 ```sh
