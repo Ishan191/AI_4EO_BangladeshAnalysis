@@ -18,12 +18,12 @@ for (var year = startYear; year <= endYear; year++) {
     var startDate = ee.Date.fromYMD(year, month, 1);
     var endDate = startDate.advance(1, 'month');
     
-    // Filter the ERA5-LAND Monthly dataset for the current month and region
+    // Set and filter the dataset for the current month and region
     var dataset = ee.ImageCollection('ECMWF/ERA5_LAND/MONTHLY_AGGR')
                    .filter(ee.Filter.date(startDate, endDate))
                    .filterBounds(bangladesh);  
 
-    // Select the U and V wind component bands and compute the monthly mean
+    // Select the Variable component bands and compute the monthly mean
     var uWind = dataset.select('u_component_of_wind_10m').mean();  
     var vWind = dataset.select('v_component_of_wind_10m').mean();  
 
